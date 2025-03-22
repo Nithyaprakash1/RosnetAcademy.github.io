@@ -8,48 +8,44 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"> <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-  /* Gallery Section Styling */
   #gallery {
-    height: 100vh; /* Full screen height */
-    background: url('assets/gallery.jpg') no-repeat center center/cover; /* Background image */
+    height: 100vh; 
+    background: url('assets/gallery.jpg') no-repeat center center/cover;  
     background-size: cover;
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: center; /* Center the content vertically */
+    align-items: center;  
   }
 
-  /* White overlay with opacity */
   .home-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.7); /* White overlay with transparency */
+    background: rgba(255, 255, 255, 0.7); 
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
   }
 
-  /* Title Styling */
   #gallery h2 {
     font-size: 3rem;
-    color: #fff; /* Change the color to white for better contrast */
+    color: #fff; 
     font-weight: bold;
     text-shadow:
-      0 0 10px #fff,        /* White glow */
-      0 0 20px rgba(0, 0, 0, 0.7), /* Stronger shadow for depth */
-      0 0 30px #ff00ff,     /* Purple glow for more effect */
-      0 0 40px #ff00ff;     /* Purple glow for stronger effect */
-    -webkit-text-stroke: 2px #220a46; /* Text stroke effect */
+      0 0 10px #fff,        
+      0 0 20px rgba(0, 0, 0, 0.7), 
+      0 0 30px #ff00ff,     
+      0 0 40px #ff00ff;     
+    -webkit-text-stroke: 2px #220a46;
   }
 
-  /* Carousel Section */
   .carousel-inner img {
     width: 100%;
     height: 100%;
@@ -61,14 +57,13 @@
     padding: 10px;
   }
 
-  /* Custom Styles for Carousel Arrows */
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
-    background-color: #8e24aa; /* Purple background color */
-    border-radius: 50%; /* Circular shape */
-    width: 40px; /* Size of the arrows */
-    height: 40px; /* Size of the arrows */
-    background-size: 50%; /* Adjust arrow size */
+    background-color: #8e24aa; 
+    border-radius: 50%;  
+    width: 40px; 
+    height: 40px; 
+    background-size: 50%;  
   }
 
   .carousel-control-prev-icon {
@@ -79,7 +74,6 @@
     background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22none%22 viewBox=%220 0 24 24%22 width=%2224%22 height=%2224%22%3E%3Cpath fill=%22%23ffffff%22 d=%22M7.41 7L11.41 11L7.41 15L8.83 16.41L13.83 11.41L8.83 6.41L7.41 7Z%22/%3E%3C/svg%3E'); /* Custom right arrow */
   }
 
-  /* Adjusting the position of arrows */
   .carousel-control-prev,
   .carousel-control-next {
     top: 50%;
@@ -90,7 +84,6 @@
 </head>
 <body>
 
-  <!-- Navbar -->
   <div id="header">
     <nav class="navbar navbar-expand-lg navbar-dark">
       <a class="navbar-brand" href="index.html">
@@ -112,22 +105,18 @@
     </nav>
   </div>
 
-  <!-- Gallery Section -->
   <section id="gallery">
     <div class="home-background">
-      <!-- Optional additional overlay content -->
     </div>
-    <div class="container text-center"> <!-- Centering the content -->
+    <div class="container text-center"> 
       <h2>Gallery</h2>
     </div>
   </section>
 
-  <!-- Carousel Section (Image Slideshow) -->
   <section id="carouselSection" class="py-5">
     <div class="container">
       <div id="imageCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-          <!-- Add your 10 images here -->
           <div class="carousel-item active">
             <img src="assets/image1.jpg" alt="Gallery Image 1">
             <div class="carousel-caption d-none d-md-block">
@@ -244,14 +233,13 @@
     </div>
   </section>
 
-  <!-- Bootstrap JS and Dependencies -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script><script>
   $(document).ready(function() {
     $('#imageCarousel').carousel({
-      interval: 5000 // Set to auto-slide every 5 seconds
+      interval: 5000 
     });
   });
 </script>
