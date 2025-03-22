@@ -7,26 +7,24 @@
   <title>Testimonials - Rosnet Academy</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"> 
   <style>
-    /* Background Image for Testimonials Section */
     #testimonial-header {
       position: relative;
-      height: 100vh; /* Full screen height */
-      background: url('assets/testi.jpg') no-repeat center center/cover; /* Background image */
+      height: 100vh; 
+      background: url('assets/testi.jpg') no-repeat center center/cover; 
       background-size: cover;
       background-position: center;
       transition: background 1s ease-in-out;
     }
 
-    /* Overlay for the header */
     #testimonial-header .overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+      background: rgba(0, 0, 0, 0.6); 
       display: flex;
       justify-content: center;
       align-items: center;
@@ -38,10 +36,9 @@
       color: #fff;
       font-weight: bold;
       text-shadow: 0 0 5px #fff, 0 0 15px #4a148c;
-      -webkit-text-stroke: 1px #220a46; /* Dark purple outline */
+      -webkit-text-stroke: 1px #220a46;
     }
 
-    /* Footer adjustments */
     footer {
       margin-top: 10px;
       font-size: 1.2rem;
@@ -50,77 +47,71 @@
     }
 
     footer p {
-      margin-top: 10px; /* Adds spacing between testimonial text and footer */
+      margin-top: 10px; 
     }
 
-    /* Extra Styling */
     .carousel-item {
       padding: 20px;
     }
 
-    /* Navbar Styling */
     .nav-item i {
-      margin-right: 8px; /* Add space between icon and text */
+      margin-right: 8px; 
     }
 
-    /* Default Style for Desktop and Larger Screens */
     .carousel-control-prev, .carousel-control-next {
-      background-color: rgba(75, 0, 130, 0.7); /* Purple color with transparency */
-      border-radius: 50%; /* Make the controls round */
-      width: 60px;  /* Set width for circular shape (wider than before) */
-      height: 60px; /* Set height for circular shape (wider than before) */
+      background-color: rgba(75, 0, 130, 0.7); 
+      border-radius: 50%; 
+      width: 60px;  
+      height: 60px; 
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 5;  /* Ensure it overlaps above the content */
+      z-index: 5;  
     }
 
     .carousel-control-prev-icon, .carousel-control-next-icon {
-      width: 35px;  /* Slightly larger icon for better visibility */
-      height: 35px; /* Slightly larger icon for better visibility */
+      width: 35px;  
+      height: 35px; 
     }
 
-    /* Mobile Screen Adjustments */
     @media (max-width: 768px) {
       .carousel-control-prev, .carousel-control-next {
-        width: 50px; /* Smaller button size on mobile */
-        height: 50px; /* Smaller button size on mobile */
-        margin-left: -15px; /* Move the previous button further inside */
-        margin-right: -15px; /* Move the next button further inside */
+        width: 50px; 
+        height: 50px; 
+        margin-left: -15px; 
+        margin-right: -15px; 
       }
 
       .carousel-control-prev-icon, .carousel-control-next-icon {
-        width: 30px;  /* Smaller icon size on mobile */
-        height: 30px; /* Smaller icon size on mobile */
+        width: 30px;   
+        height: 30px; 
       }
     }
 
-    /* Extra Small Screens (like phones in portrait mode) */
     @media (max-width: 480px) {
       .carousel-control-prev, .carousel-control-next {
-        width: 45px; /* Further reduce button size on very small screens */
-        height: 45px; /* Further reduce button size on very small screens */
-        margin-left: -20px; /* Move the previous button further inside */
-        margin-right: -20px; /* Move the next button further inside */
+        width: 45px;  
+        height: 45px;
+        margin-left: -20px;  
+        margin-right: -20px; 
       }
 
       .carousel-control-prev-icon, .carousel-control-next-icon {
-        width: 25px;  /* Smaller icon size on very small screens */
-        height: 25px; /* Smaller icon size on very small screens */
+        width: 25px;   
+        height: 25px; 
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Include Header -->
   <div id="header">
     <nav class="navbar navbar-expand-lg navbar-transparent">
       <a class="navbar-brand" href="home.html">
         <img src="assets/rosnet-round.png" alt="Rosnet Academy Logo" class="logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <img src="assets/ic_menu.png" alt="Menu Icon"> <!-- Custom Menu Icon -->
+        <img src="assets/ic_menu.png" alt="Menu Icon"> 
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -135,7 +126,6 @@
     </nav>
   </div>
 
-  <!-- Testimonials Section with Header Image -->
   <section id="testimonial-header">
     <div class="overlay">
       <div>
@@ -144,18 +134,15 @@
     </div>
   </section>
 
-  <!-- Testimonials Section with Carousel -->
   <section id="testimonials">
     <div class="container">
-      <!-- Bootstrap Carousel for Testimonials -->
       <div id="testimonialCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
-        <!-- Indicators (optional, for navigation) -->
+
         <ol class="carousel-indicators">
           <li data-target="#testimonialCarousel" data-slide-to="0" class="active"></li>
           <li data-target="#testimonialCarousel" data-slide-to="1"></li>
         </ol>
 
-        <!-- Carousel Inner (testimonial content) -->
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="testimonial">
@@ -171,7 +158,6 @@
           </div>
         </div>
 
-        <!-- Controls (optional) -->
         <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
@@ -184,7 +170,6 @@
     </div>
   </section>
 
-  <!-- Bootstrap JS and Dependencies for Carousel -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
