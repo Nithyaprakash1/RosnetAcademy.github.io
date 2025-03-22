@@ -7,25 +7,23 @@
   <title>Rosnet Academy</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"> 
   <style>
-    /* Full screen background image */
     #home {
       position: relative;
-      height: 100vh; /* Make it full screen */
+      height: 100vh;
       background: url('assets/background.jpeg') no-repeat center center/cover;
       background-size: cover;
       background-position: center;
     }
 
-    /* Overlay on the image */
     .home-background {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.6); /* White overlay with opacity */
+      background: rgba(255, 255, 255, 0.6); 
       display: flex;
       justify-content: center;
       align-items: center;
@@ -37,7 +35,7 @@
       color: #4a148c;
       font-weight: bold;
       text-shadow: 0 0 5px #fff, 0 0 10px #4a148c;
-      -webkit-text-stroke: 1px #220a46; /* Add a dark purple outline */
+      -webkit-text-stroke: 1px #220a46; 
     }
 
     .home-background p {
@@ -45,10 +43,9 @@
       color: #4a148c;
       font-weight: lighter;
       text-shadow: 0 0 3px #fff, 0 0 5px #4a148c;
-      -webkit-text-stroke: 0.5px #220a46; /* Add a lighter outline */
+      -webkit-text-stroke: 0.5px #220a46; 
     }
 
-    /* Navbar Styling */
     nav {
       position: fixed;
       top: 0;
@@ -58,28 +55,23 @@
       background-color: rgba(0, 0, 0, 0.5);
     }
 
-    /* Custom styling for mobile screen */
     @media (max-width: 767px) {
-      /* Ensure navbar toggle button is visible */
       .navbar-toggler {
-        display: block; /* Make sure the navbar-toggler is shown on small screens */
-        border: 1px solid #4a148c; /* Optional: Add border to the toggle button */
-        background-color: transparent; /* Remove background */
+        display: block;  
+        border: 1px solid #4a148c;  
+        background-color: transparent; 
       }
 
-      /* Set image size for the custom menu icon */
       .navbar-toggler img {
-        width: 24px; /* Set width to 24px */
-        height: 24px; /* Set height to 24px */
-        display: block; /* Ensures the image is displayed correctly */
+        width: 24px;  
+        height: 24px; 
+        display: block; 
       }
 
-      /* Hide the default hamburger icon */
       .navbar-toggler-icon {
         display: none;
       }
 
-      /* Custom style for navbar items */
       .navbar-collapse {
         width: 100%;
         text-align: center;
@@ -100,18 +92,15 @@
         font-weight: 500;
       }
 
-      /* Improve the appearance of navbar links on mobile */
       .nav-link:hover {
         color: #220a46;
       }
     }
 
-    /* Smooth Scroll */
     html {
       scroll-behavior: smooth;
     }
 
-    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -128,19 +117,15 @@
 </head>
 <body>
 
-  <!-- Include Header -->
   <div id="header">
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-transparent">
       <a class="navbar-brand" href="index.html">
         <img src="assets/rosnet-round.png" alt="Rosnet Academy Logo" class="logo">
       </a>
 
-      <!-- Navbar Toggle Button (hamburger menu) with custom image icon -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <!-- Custom Menu Icon Image -->
+        
         <img src="assets/ic_menu.png" alt="Menu Icon">
-        <!-- Default Bootstrap Hamburger Icon (hidden now) -->
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -156,7 +141,6 @@
     </nav>
   </div>
 
-  <!-- Home Page Full Background Image -->
   <section id="home">
     <div class="home-background">
       <div>
@@ -168,7 +152,6 @@
     </div>
   </section>
 
-  <!-- Bootstrap JS for Carousel -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
