@@ -192,27 +192,27 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <script>
-    function animateCounter(id, start, end, duration) {
-      let current = start;
-      let range = end - start;
-      let increment = end > start ? 1 : -1;
-      let stepTime = Math.abs(Math.floor(duration / range));
-      let counterElement = document.getElementById(id);
+    function animateCounter(id, start, end, duration, suffix = '') {
+  let current = start;
+  let range = end - start;
+  let increment = end > start ? 1 : -1;
+  let stepTime = Math.abs(Math.floor(duration / range));
+  let counterElement = document.getElementById(id);
 
-      let interval = setInterval(function() {
-        current += increment;
-        counterElement.textContent = current;
-        if (current === end) {
-          clearInterval(interval);
-        }
-      }, stepTime);
+  let interval = setInterval(function () {
+    current += increment;
+    counterElement.textContent = current + suffix;
+    if (current === end) {
+      clearInterval(interval);
     }
+  }, stepTime);
+}
 
-    window.onload = function() {
-      animateCounter("studentCount", 0, 500, 5000, "+"); 
-      animateCounter("staffCount", 0, 12, 5000);    
-      animateCounter("courseCount", 0, 30, 5000);  
-    };
+window.onload = function () {
+  animateCounter("studentCount", 0, 500, 5000, "+"); // Adding "+" after the student count
+  animateCounter("staffCount", 0, 12, 5000);          // Staff count remains without suffix
+  animateCounter("courseCount", 0, 30, 5000);         // Course count remains without suffix
+};
   </script>
 
 </body>
