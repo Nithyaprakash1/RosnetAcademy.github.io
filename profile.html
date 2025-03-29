@@ -165,7 +165,7 @@
         <div class="counter-card card">
           <div class="card-body">
             <p>No of Students</p>
-            <div id="studentCount" class="counter">0+</div>
+            <div id="studentCount" class="counter">0</div>
           </div>
         </div>
 
@@ -209,7 +209,7 @@
     }
 
     window.onload = function() {
-      animateCounter("studentCount", 0, 500, 5000); 
+      animateCounter("studentCount", 0, 500, 5000, "+"); 
       animateCounter("staffCount", 0, 12, 5000);    
       animateCounter("courseCount", 0, 30, 5000);  
     };
