@@ -11,8 +11,8 @@
   <style>
     #testimonial-header {
       position: relative;
-      height: 100vh; 
-      background: url('assets/testi.jpg') no-repeat center center/cover; 
+      height: 100vh;
+      background: url('assets/testi.jpg') no-repeat center center/cover;
       background-size: cover;
       background-position: center;
       transition: background 1s ease-in-out;
@@ -24,7 +24,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6); 
+      background: rgba(0, 0, 0, 0.6);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -47,59 +47,35 @@
     }
 
     footer p {
-      margin-top: 10px; 
+      margin-top: 10px;
     }
 
-    .carousel-item {
+    .testimonial-container {
+      max-height: 400px; /* Adjust the height as needed */
+      overflow-y: auto;
       padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
     }
 
-    .nav-item i {
-      margin-right: 8px; 
+    .testimonial {
+      background: #fff;
+      margin-bottom: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
     }
 
-    .carousel-control-prev, .carousel-control-next {
-      background-color: rgba(75, 0, 130, 0.7); 
-      border-radius: 50%; 
-      width: 60px;  
-      height: 60px; 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 5;  
+    .testimonial p {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      line-height: 1.5;
     }
 
-    .carousel-control-prev-icon, .carousel-control-next-icon {
-      width: 35px;  
-      height: 35px; 
-    }
-
-    @media (max-width: 768px) {
-      .carousel-control-prev, .carousel-control-next {
-        width: 50px; 
-        height: 50px; 
-        margin-left: -15px; 
-        margin-right: -15px; 
-      }
-
-      .carousel-control-prev-icon, .carousel-control-next-icon {
-        width: 30px;   
-        height: 30px; 
-      }
-    }
-
-    @media (max-width: 480px) {
-      .carousel-control-prev, .carousel-control-next {
-        width: 45px;  
-        height: 45px;
-        margin-left: -20px;  
-        margin-right: -20px; 
-      }
-
-      .carousel-control-prev-icon, .carousel-control-next-icon {
-        width: 25px;   
-        height: 25px; 
-      }
+    .testimonial footer {
+      text-align: right;
+      font-style: italic;
+      color: #6c757d;
     }
   </style>
 </head>
@@ -111,7 +87,7 @@
         <img src="assets/rosnet-round.png" alt="Rosnet Academy Logo" class="logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <img src="assets/ic_menu.png" alt="Menu Icon"> 
+        <img src="assets/ic_menu.png" alt="Menu Icon">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -135,67 +111,34 @@
   </section>
 
   <section id="testimonials">
-    <div class="container">
-      <div id="testimonialCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
-
-        <ol class="carousel-indicators">
-          <li data-target="#testimonialCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#testimonialCarousel" data-slide-to="1"></li>
-        </ol>
-
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="testimonial">
-              <p>"I had an excellent experience at Rosnet Academy. The personal attention from the expert faculty was outstanding. The highly specialized courses were reasonably priced. The facilities were clean and conducive to learning. I highly recommend this coaching center!"</p>
-              <footer>- Yamuna V</footer>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="testimonial">
-              <p>"All the teachers are being kind with me. I understood maths easily. After going to this academy l got good marks and l learned more things. I like this academy. This academy is very good place to read 👍🙂."</p>
-              <footer>- sri bala madhoolika</footer>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="testimonial">
-              <p>"I attended Rosnet Academy both online and offline, and I must say the faculty is excellent. With more than 3 teachers, regular tests, and course material provision, the expert guidance provided in classes with a size of greater than 10 and less than 50 ensures a great learning experience."</p>
-              <footer>- Ajay</footer>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="testimonial">
-              <p>"I highly recommend Rosnet Academy for anyone looking for quality coaching. The tutors are highly experienced and the courses are reasonably priced. The security measures in place also ensure a safe learning environment. Overall, a great place for quality education."</p>
-              <footer>- Kalai vani Kalaivani</footer>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="testimonial">
-              <p>"Rosnet Academy is a top-notch coaching centre with highly specialised courses and expert faculty. The personal attention given to each student ensures holistic development. With their excellent track record, they are the go-to place for quality education."</p>
-              <footer>- Himanshu Singh Rajpurohit</footer>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="testimonial">
-              <p>"Personal attention towards slow learners. Very kind approach. Satisfactory in requirements and requests. Excellent as a whole.highly recommended."</p>
-              <footer>- Avaiyar Manickam</footer>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="testimonial">
-              <p>" had a great interaction with Rosnet Academy, a coaching center with subject matter expertise. The staff were highly knowledgeable and provided excellent guidance. Their expertise was evident in the quality of coaching they offered. Overall, it was an excellent experience."</p>
-              <footer>- Vel</footer>
-            </div>
-          </div>
-        </div>
-
-        <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
+    <div class="container testimonial-container">
+      <div class="testimonial">
+        <p>"I had an excellent experience at Rosnet Academy. The personal attention from the expert faculty was outstanding. The highly specialized courses were reasonably priced. The facilities were clean and conducive to learning. I highly recommend this coaching center!"</p>
+        <footer>- Yamuna V</footer>
+      </div>
+      <div class="testimonial">
+        <p>"All the teachers are being kind with me. I understood maths easily. After going to this academy l got good marks and l learned more things. I like this academy. This academy is very good place to read 👍🙂."</p>
+        <footer>- Sri Bala Madhoolika</footer>
+      </div>
+      <div class="testimonial">
+        <p>"I attended Rosnet Academy both online and offline, and I must say the faculty is excellent. With more than 3 teachers, regular tests, and course material provision, the expert guidance provided in classes with a size of greater than 10 and less than 50 ensures a great learning experience."</p>
+        <footer>- Ajay</footer>
+      </div>
+      <div class="testimonial">
+        <p>"I highly recommend Rosnet Academy for anyone looking for quality coaching. The tutors are highly experienced and the courses are reasonably priced. The security measures in place also ensure a safe learning environment. Overall, a great place for quality education."</p>
+        <footer>- Kalai Vani Kalaivani</footer>
+      </div>
+      <div class="testimonial">
+        <p>"Rosnet Academy is a top-notch coaching centre with highly specialised courses and expert faculty. The personal attention given to each student ensures holistic development. With their excellent track record, they are the go-to place for quality education."</p>
+        <footer>- Himanshu Singh Rajpurohit</footer>
+      </div>
+      <div class="testimonial">
+        <p>"Personal attention towards slow learners. Very kind approach. Satisfactory in requirements and requests. Excellent as a whole. Highly recommended."</p>
+        <footer>- Avaiyar Manickam</footer>
+      </div>
+      <div class="testimonial">
+        <p>"Had a great interaction with Rosnet Academy, a coaching center with subject matter expertise. The staff were highly knowledgeable and provided excellent guidance. Their expertise was evident in the quality of coaching they offered. Overall, it was an excellent experience."</p>
+        <footer>- Vel</footer>
       </div>
     </div>
   </section>
