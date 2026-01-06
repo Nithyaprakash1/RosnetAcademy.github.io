@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosnet Academy | Excellence in Education</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #4a148c;
+            --secondary: #7b1fa2;
+            --accent: #ffab00;
+            --text-dark: #2d3436;
+            --section-gap: 120px;
+        }
+
+        /* Cursor Normalization */
+        * { cursor: default; }
+        a, button, .btn, .nav-link, .clickable, .gallery-btn { cursor: pointer; }
+        input, textarea, select { cursor: text; }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #fcfaff;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        #home {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        #bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(74, 20, 140, 0.4), rgba(0,0,0,0.7));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-logo {
+            height: 180px;
+            width: 180px;
+            border-radius: 50%;
+            border: 6px solid var(--accent);
+            box-shadow: 0 0 35px rgba(255, 171, 0, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            object-fit: cover;
+        }
+
+        /* Navbar */
+        .navbar {
+            transition: all 0.4s ease;
+            padding: 1.5rem 2rem;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+            padding: 0.6rem 2rem;
+        }
+
+        .navbar-brand img {
+            height: 70px;
+            transition: 0.4s;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .navbar.scrolled .navbar-brand img { height: 50px; }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 700;
+            margin: 0 15px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .navbar.scrolled .nav-link { color: var(--primary) !important; }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--primary);
+            color: white;
+            padding: 100px 0;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+            border-radius: 60px 60px 0 0;
+            box-shadow: 0 -20px 40px rgba(0,0,0,0.2);
+        }
+
+        .stat-item h3 { 
+            font-size: 5rem;
+            font-weight: 800; 
+            color: var(--accent);
+            margin-bottom: 0;
+            line-height: 1;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        
+        .stat-item p {
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        /* Wall of Love Section */
+        .testimonials-section {
+            background: #fcfaff;
+            padding: 100px 0;
+        }
+
+        .testimonial-viewport {
+            height: 600px;
+            overflow-y: auto;
+            position: relative;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+            cursor: ns-resize;
+        }
+
+        .testimonial-viewport::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-track {
+            display: flex;
+            flex-direction: column;
+            animation: scroll-vertical 120s linear infinite;
+        }
+
+        .testimonial-viewport:hover .testimonial-track {
+            animation-play-state: paused;
+        }
+
+        .comment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        .comment-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 25px rgba(74, 20, 140, 0.08);
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .username {
+            font-weight: 700;
+            color: #111;
+            font-size: 1rem;
+            display: block;
+        }
+
+        .timestamp {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .comment-text {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        @keyframes scroll-vertical {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        /* FAQ Section */
+        #faq {
+            padding: 100px 0;
+            background: #fff;
+        }
+
+        .faq-card {
+            border: none;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-radius: 12px !important;
+            overflow: hidden;
+        }
+
+        .faq-header {
+            background: #fff;
+            padding: 0;
+        }
+
+        .faq-btn {
+            width: 100%;
+            text-align: left;
+            padding: 20px 25px;
+            font-weight: 700;
+            color: var(--primary);
+            background: transparent;
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none !important;
+        }
+
+        .faq-btn:after {
+            content: "\f078";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            transition: 0.3s;
+        }
+
+        .faq-btn:not(.collapsed):after {
+            transform: rotate(180deg);
+            color: var(--accent);
+        }
+
+        .faq-body {
+            padding: 0 25px 25px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* Standard Components */
+        #about {
+            position: relative;
+            padding: 120px 0;
+            background: linear-gradient(135deg, #4a148c 0%, #1a0633 100%);
+            overflow: hidden;
+        }
+
+        .story-glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(191, 123, 255, 0.4); 
+            border-radius: 24px;
+            padding: 60px;
+            color: white;
+        }
+
+        /* Gallery Styles */
+        .gallery-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .gallery-track { display: flex; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
+        .gallery-slide { min-width: 100%; aspect-ratio: 21/9; object-fit: cover; }
+
+        /* Transy Glassy Button */
+        .glassy-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .glassy-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-50%) scale(1.1);
+            color: var(--accent);
+        }
+
+        .btn-prev { left: 20px; }
+        .btn-next { right: 20px; }
+
+        .header-3d { font-size: 3.5rem; font-weight: 800; color: var(--primary); text-align: center; margin-bottom: 50px; }
+
+        .connect-card {
+            border: none;
+            overflow: hidden;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .map-wrapper { width: 100%; height: 450px; }
+        .contact-info-panel { padding: 50px; display: flex; flex-direction: column; justify-content: center; height: 100%; }
+        .info-row { display: flex; align-items: center; margin-bottom: 30px; }
+        .info-icon-box { width: 60px; height: 60px; background: var(--primary); color: white; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-right: 20px; flex-shrink: 0; }
+        
+        /* Older Version Footer */
+        footer { 
+            background: #1a1a1a; 
+            color: #ddd; 
+            padding: 60px 0 20px; 
+            border-top: 5px solid var(--accent);
+        }
+        .footer-logo { height: 100px; border-radius: 50%; border: 3px solid #333; margin-bottom: 25px; }
+
+        .niprak-section {
+            background: #111;
+            padding: 30px 0;
+            border-top: 1px solid #222;
+        }
+        .niprak-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        .niprak-link {
+            color: #fff;
+            transition: 0.3s;
+            text-decoration: none !important;
+        }
+        .niprak-link:hover { color: var(--accent); }
+
+        @media (max-width: 768px) {
+            .header-3d { font-size: 2.5rem; }
+            .testimonial-viewport { height: 500px; }
+            .story-glass-card { padding: 30px; }
+            .gallery-slide { aspect-ratio: 16/9; }
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="100">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://github.com/Nithyaprakash1/RosnetAcademy.github.io/blob/main/assets/rosnet-round.png?raw=true" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <i class="fas fa-bars" style="color: var(--primary);"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Our Story</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="video-container">
+            <video autoplay muted loop playsinline id="bg-video">
+                <source src="https://www.pexels.com/download/video/5198159/" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-logo-container" data-aos="fade-down">
+                    <img src="https://github.com/Nithyaprakash1/RosnetAcademy.github.io/blob/main/assets/rosnet-round.png?raw=true" alt="Rosnet Academy Logo" class="hero-logo">
+                </div>
+                <h1 data-aos="zoom-in" data-aos-duration="1200" class="display-3 font-weight-bold">Rosnet Academy</h1>
+                <div class="hero-quote mb-5 px-3" data-aos="fade-up" data-aos-delay="400">
+                    <p class="mb-2 font-weight-bold" style="font-size: clamp(1.1rem, 3vw, 1.8rem); color: var(--accent);">"அகர முதல எழுத்தெல்லாம் ஆதி பகவன் முதற்றே உலகு"</p>
+                    <p class="text-uppercase tracking-wider" style="letter-spacing: 4px; font-size: 0.8rem; opacity: 0.8;">The alphabet of excellence starts here</p>
+                </div>
+                <div class="d-flex flex-wrap justify-content-center" data-aos="fade-up" data-aos-delay="600">
+                    <a href="#about" class="btn btn-warning btn-lg px-5 py-3 rounded-pill font-weight-bold mx-2 mb-3 shadow">Discover More</a>
+                    <a href="#contact" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill font-weight-bold mx-2 mb-3">Enroll Today</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4 mb-5 mb-md-0" data-aos="fade-up">
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="500">0</h3>
+                        <p>Students</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5 mb-md-0" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="12">0</h3>
+                        <p>Expert Staff</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="30">0</h3>
+                        <p>Courses</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="row no-gutters story-glass-card" data-aos="fade-up">
+                <div class="col-lg-7 pr-lg-5">
+                    <h2>Our Story</h2>
+                    <p>A legacy of excellence in personalized coaching. We blend traditional values with modern learning techniques to unlock every student's true potential.</p>
+                    <p>Founded with a vision to democratize high-quality education, Rosnet Academy has grown from a small study group into a premier institution for competitive success.</p>
+                </div>
+                <div class="col-lg-5 text-center mt-4 mt-lg-0">
+                    <img src="https://images.unsplash.com/photo-1523050335102-c628997df0f5?auto=format&fit=crop&w=800&q=80" style="width: 100%; border-radius: 20px;" alt="Our Story">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wall of Love Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="font-weight-bold" style="color: var(--primary);">Wall of Love</h2>
+                <p class="text-muted">Direct reviews from our students & parents</p>
+            </div>
+
+            <div class="testimonial-viewport" id="viewport">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <div id="originalGroup"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="font-weight-bold" style="color: var(--primary);">Frequently Asked Questions</h2>
+                <p class="text-muted">Everything you need to know about Rosnet Academy</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div id="accordionFAQ">
+                        <div class="faq-card" data-aos="fade-up">
+                            <div class="faq-header" id="headingOne">
+                                <a href="#" class="faq-btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true">
+                                    What classes and subjects do you offer coaching for?
+                                </a>
+                            </div>
+                            <div id="collapseOne" class="collapse show" data-parent="#accordionFAQ">
+                                <div class="faq-body">
+                                    We offer coaching for standard school classes (Primary to Higher Secondary) across all major boards (CBSE, State Board, ICSE). Our core subjects include Mathematics, Physics, Chemistry, Biology, and Computer Science.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="faq-header" id="headingTwo">
+                                <a href="#" class="faq-btn collapsed" data-toggle="collapse" data-target="#collapseTwo">
+                                    Do you provide personalized attention for slow learners?
+                                </a>
+                            </div>
+                            <div id="collapseTwo" class="collapse" data-parent="#accordionFAQ">
+                                <div class="faq-body">
+                                    Yes, personalization is at our core. We maintain a healthy student-to-teacher ratio and offer special remedial sessions for students who need extra support in specific topics.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="faq-header" id="headingThree">
+                                <a href="#" class="faq-btn collapsed" data-toggle="collapse" data-target="#collapseThree">
+                                    Are online classes available?
+                                </a>
+                            </div>
+                            <div id="collapseThree" class="collapse" data-parent="#accordionFAQ">
+                                <div class="faq-body">
+                                    Yes, we provide high-quality interactive online coaching via modern digital platforms, alongside our traditional physical classroom sessions in Coimbatore.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="faq-header" id="headingFour">
+                                <a href="#" class="faq-btn collapsed" data-toggle="collapse" data-target="#collapseFour">
+                                    How do you track student progress?
+                                </a>
+                            </div>
+                            <div id="collapseFour" class="collapse" data-parent="#accordionFAQ">
+                                <div class="faq-body">
+                                    We conduct regular weekly assessments and monthly grand tests. Detailed progress reports are shared with parents during our monthly PTM (Parent-Teacher Meetings).
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="bg-light" style="padding: 100px 0;">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="font-weight-bold" style="color: var(--primary);">Campus Moments</h2>
+            </div>
+            <div class="gallery-wrapper" data-aos="zoom-out">
+                <button class="glassy-nav-btn btn-prev" onclick="moveGallery(-1)"><i class="fas fa-chevron-left"></i></button>
+                <div class="gallery-track" id="galleryTrack">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600" class="gallery-slide" alt="G1">
+                    <img src="https://images.unsplash.com/photo-1577891742292-474818b28343?auto=format&fit=crop&w=1600" class="gallery-slide" alt="G2">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600" class="gallery-slide" alt="G3">
+                </div>
+                <button class="glassy-nav-btn btn-next" onclick="moveGallery(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="padding: 120px 0; background: #fff;">
+        <div class="container">
+            <h2 class="header-3d" data-aos="zoom-in">Let's Connect</h2>
+            <div class="connect-card" data-aos="fade-up">
+                <div class="row no-gutters">
+                    <div class="col-lg-7">
+                        <div class="map-wrapper">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31329.32077406341!2d77.0144225026273!3d11.026236995865387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba857846a5619d3%3A0x4c82a3b8c36c248d!2sLakshmipuram%206th%20St%20%26%20Masakalipalayam%20Rd%2C%20Periyar%20Nagar%2C%20Lakshmi%20Ammal%20Layout%2C%20Hope%20College%2C%20Coimbatore%2C%20Tamil%20Nadu%20641015!5e0!3m2!1sen!2sin!4v1742647059750!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="contact-info-panel">
+                            <div class="info-row" data-aos="fade-left" data-aos-delay="100">
+                                <div class="info-icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                                <div><p class="mb-0">#79A, Umapathi Towers, 6th street, Coimbatore - 04</p></div>
+                            </div>
+                            <div class="info-row" data-aos="fade-left" data-aos-delay="200">
+                                <div class="info-icon-box"><i class="fas fa-envelope"></i></div>
+                                <div><p class="mb-0">rosnetacademy@gmail.com</p></div>
+                            </div>
+                            <div class="info-row" data-aos="fade-left" data-aos-delay="300">
+                                <div class="info-icon-box"><i class="fas fa-phone-alt"></i></div>
+                                <div><p class="mb-0">+91 98654 29180</p></div>
+                            </div>
+                            <a href="https://wa.me/919865429180" class="btn btn-warning py-3 rounded-pill font-weight-bold shadow mt-3">
+                                <i class="fab fa-whatsapp mr-2"></i> CHAT ON WHATSAPP
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Older Version Footer -->
+    <footer>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-left mb-4 mb-md-0">
+                    <img src="https://github.com/Nithyaprakash1/RosnetAcademy.github.io/blob/main/assets/rosnet-round.png?raw=true" class="footer-logo" alt="Logo">
+                </div>
+                <div class="col-md-8 text-center text-md-right">
+                    <h4 class="font-weight-bold mb-3" style="color: var(--accent);">Rosnet Academy</h4>
+                    <p class="mb-1">Empowering minds, Shaping futures.</p>
+                    <p class="mb-4">#79A, Umapathi Towers, 6th street, Coimbatore, Tamil Nadu 641015</p>
+                    <div class="social-links mb-4">
+                        <a href="#" class="text-white mx-3 h4"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white mx-3 h4"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white mx-3 h4"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- NIPRAK Section -->
+        <div class="niprak-section">
+            <div class="container">
+                <div class="niprak-content">
+                    <span>Developed by <strong>NIPRAK</strong></span>
+                    <span><i class="fas fa-envelope mr-1"></i> <a href="mailto:iamnithyaprakash@gmail.com" class="niprak-link">iamnithyaprakash@gmail.com</a></span>
+                    <span><i class="fas fa-phone-alt mr-1"></i> <a href="tel:+917092988131" class="niprak-link">+91 70929 88131</a></span>
+                </div>
+                <div class="text-center mt-3 small text-muted">
+                    &copy; 2026 Rosnet Academy. Excellence in Teaching. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        const testimonials = [
+            { name: "Yamuna V", text: "I had an excellent experience at Rosnet Academy. The personal attention from the expert faculty was outstanding. The highly specialized courses were reasonably priced." },
+            { name: "Sri Bala Madhoolika", text: "All the teachers are being kind with me. I understood maths easily. After going to this academy l got good marks and l learned more things. 👍🙂." },
+            { name: "Ajay", text: "I attended Rosnet Academy both online and offline, and I must say the faculty is excellent. Regular tests and course material provision ensures a great learning experience." },
+            { name: "Kalai Vani Kalaivani", text: "I highly recommend Rosnet Academy for anyone looking for quality coaching. The tutors are highly experienced and the courses are reasonably priced." },
+            { name: "Himanshu Singh Rajpurohit", text: "Rosnet Academy is a top-notch coaching centre with highly specialised courses and expert faculty. Holistic development is ensured here." },
+            { name: "Avaiyar Manickam", text: "Personal attention towards slow learners. Very kind approach. Satisfactory in requirements and requests. Highly recommended." },
+            { name: "Vel", text: "Had a great interaction with Rosnet Academy. The staff were highly knowledgeable and provided excellent guidance." },
+            { name: "Bouthiga", text: "The experience of this tuition is very good. Teaching is also very good." },
+            { name: "Ashwin Babu", text: "Classes are superb, it is very clearly understand." },
+            { name: "Mourish", text: "Teaching is so good. Well experienced and humble coaching faculties. Most recommended tuition centre." },
+            { name: "Dharnesh", text: "I highly recommend for anyone who need quality education. The support and education offered was fantastic and consistent." },
+            { name: "Gokul", text: "Mrs.Preethi and team are really doing a great job. Her student-friendly nature motivates studies even for slow-learners." },
+            { name: "Divyasree.R", text: "You have always motivated me and helped me to gain confidence. Thank you so much for being a great teacher." },
+            { name: "Subhashini", text: "A great passionate teaching... Had a very great and enthusiastic learning sessions. Happy being a student of Rosnet Academy." },
+            { name: "Charuhasini.D", text: "One of the best atmosphere to read and gain our knowledge. Each and every teacher will motivate us." },
+            { name: "Priya Mary", text: "Qualified staffs provide personalized attention to slow learners. Nurturing environment that fosters growth." },
+            { name: "Samson Raj", text: "Outstanding Coaching Experience! I completed my cbse 10th with 93% scoring 97 in Maths. I highly recommend Preethi mam." },
+            { name: "Anusiya Devi", text: "My son's academics improved. Your staffs were very good, especially Rahul sir and Deepak sir." },
+            { name: "LH Carl Davidsion", text: "Best tuition for back benchers and toppers alike. Preeti mam motivated me a lot in maths." },
+            { name: "Vishnu", text: "Rosnet Academy is excellent! It has multiple facilities, a resourceful library, and quality courses. Highly recommended!" }
+        ];
+
+        function createComment(data) {
+            return `
+                <div class="comment-card">
+                    <div class="user-avatar">${data.name.charAt(0)}</div>
+                    <div class="comment-body">
+                        <span class="username">${data.name}</span>
+                        <span class="timestamp">Verified Review</span>
+                        <p class="comment-text">${data.text}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        const groupEl = document.getElementById('originalGroup');
+        const trackEl = document.getElementById('testimonialTrack');
+        groupEl.innerHTML = testimonials.map(t => createComment(t)).join('');
+        
+        trackEl.appendChild(groupEl.cloneNode(true));
+        trackEl.appendChild(groupEl.cloneNode(true));
+
+        AOS.init({ duration: 1000, once: true });
+
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) { $('.navbar').addClass('scrolled'); }
+            else { $('.navbar').removeClass('scrolled'); }
+        });
+
+        // Gallery Control Logic
+        const gTrack = document.getElementById('galleryTrack');
+        let currentIdx = 0;
+        const totalSlides = 3;
+
+        function moveGallery(dir) {
+            currentIdx = (currentIdx + dir + totalSlides) % totalSlides;
+            updateGallery();
+        }
+
+        function updateGallery() {
+            if (gTrack) {
+                gTrack.style.transform = `translateX(-${currentIdx * 100}%)`;
+            }
+        }
+
+        let autoSlide = setInterval(() => moveGallery(1), 5000);
+
+        document.querySelector('.gallery-wrapper').addEventListener('mouseenter', () => clearInterval(autoSlide));
+        document.querySelector('.gallery-wrapper').addEventListener('mouseleave', () => {
+            clearInterval(autoSlide);
+            autoSlide = setInterval(() => moveGallery(1), 5000);
+        });
+
+        // Stats Counter
+        const startCounters = () => {
+            document.querySelectorAll('.counter').forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const update = () => {
+                    count += target/100;
+                    if(count < target) {
+                        counter.innerText = Math.ceil(count) + "+";
+                        setTimeout(update, 20);
+                    } else { counter.innerText = target + "+"; }
+                };
+                update();
+            });
+        };
+
+        const obs = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) { startCounters(); obs.disconnect(); }
+        }, { threshold: 0.5 });
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) obs.observe(statsSection);
+    </script>
+</body>
+</html>
