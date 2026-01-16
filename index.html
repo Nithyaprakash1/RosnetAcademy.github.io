@@ -139,6 +139,65 @@
     margin-bottom: 5px; /* Creates a small gap at the bottom of the logo itself */
 }
 
+/* App Section Styles */
+.app-download-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #fcfaff 0%, #f3e5f5 100%);
+    overflow: hidden;
+}
+
+.app-glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    padding: 50px;
+    border: 1px solid rgba(74, 20, 140, 0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.app-thumbnail {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(74, 20, 140, 0.2);
+    transform: rotate(-2deg);
+    transition: 0.5s;
+}
+
+.app-thumbnail:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.download-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #000;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 10px;
+    text-decoration: none !important;
+    transition: 0.3s;
+    margin-top: 20px;
+}
+
+.download-badge:hover {
+    background: #333;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    color: #fff;
+}
+
+.download-badge i {
+    font-size: 2rem;
+    margin-right: 15px;
+}
+
+.app-stat {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    display: block;
+}
         .navbar.scrolled .navbar-brand img { height: 50px; }
 
         .nav-link {
@@ -659,6 +718,42 @@
         </div>
     </section>
 
+<section class="app-download-section">
+    <div class="container">
+        <div class="app-glass-card" data-aos="fade-up">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0 text-center text-lg-left">
+                    <h6 class="text-uppercase font-weight-bold" style="color: var(--secondary); letter-spacing: 2px;">Stay Connected</h6>
+                    <h2 class="display-4 font-weight-bold mb-4" style="color: var(--primary);">Rosnet Academy in Your Pocket</h2>
+                    <p class="lead text-muted mb-4">Track student progress, check weekly test results, and receive instant notifications through our dedicated mobile platform.</p>
+
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <span class="app-stat counter" data-target="100">0</span>
+                            <span class="text-uppercase small font-weight-bold">Downloads</span>
+                        </div>
+                        <div class="col-6">
+                            <span class="app-stat">5/5</span>
+                            <span class="text-uppercase small font-weight-bold">Rating</span>
+                        </div>
+                    </div>
+
+                    <a href="https://play.google.com/store/apps/details?id=com.nithyaprakash.rosnetacademy&hl=en-US" target="_blank" class="download-badge">
+                        <i class="fab fa-google-play"></i>
+                        <div>
+                            <small class="d-block" style="font-size: 0.7rem; opacity: 0.8;">GET IT ON</small>
+                            <span style="font-size: 1.1rem; font-weight: 600;">Google Play</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="assets/app-thumbnail.png" alt="Rosnet App" class="app-thumbnail" data-aos="zoom-in" data-aos-delay="200">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
@@ -752,6 +847,25 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     $(document).ready(function(){
+    // Add this inside your $(document).ready() function
+const counters = document.querySelectorAll('.counter');
+const speed = 200;
+
+counters.forEach(counter => {
+    const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const inc = target / speed;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(updateCount, 1);
+        } else {
+            counter.innerText = target + "+";
+        }
+    };
+    updateCount();
+});
         // Shows the modal after 1.5 seconds for better user experience
         setTimeout(function(){
             $('#loadPopup').modal('show');
