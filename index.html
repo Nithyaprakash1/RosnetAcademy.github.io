@@ -112,26 +112,32 @@
             object-fit: cover;
         }
 
-        /* Navbar */
-        .navbar {
-            transition: all 0.4s ease;
-            padding: 1.5rem 2rem;
-            background: transparent;
-            z-index: 1000;
-        }
+        /* Update these specific sections in your <style> tag */
 
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-            padding: 0.6rem 2rem;
-        }
+.navbar {
+    transition: all 0.4s ease;
+    padding: 1.5rem 2rem;
+    background: transparent;
+    z-index: 1000;
+    /* Added a slight bottom border or shadow to define the gap visually when scrolled */
+}
 
-        .navbar-brand img {
-            height: 70px;
-            transition: 0.4s;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-        }
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 0.8rem 2rem; /* Adjusted for better vertical centering */
+}
+
+/* Fix for the content being hidden under the navbar */
+#home {
+    padding-top: 80px; /* Gives the navbar "breathing room" from the top content */
+}
+
+.navbar-brand img {
+    height: 75px; /* Slightly increased for better visibility */
+    margin-bottom: 5px; /* Creates a small gap at the bottom of the logo itself */
+}
 
         .navbar.scrolled .navbar-brand img { height: 50px; }
 
@@ -438,7 +444,18 @@
     </style>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="100">
-
+<div class="modal fade" id="loadPopup" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content" style="background: transparent; border: none;">
+            <div class="modal-body p-0 text-right">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; font-size: 2rem; opacity: 1; text-shadow: 0 0 10px rgba(0,0,0,0.5); position: absolute; right: 10px; top: 5px; z-index: 9999;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <img src="Assets/google-pay-mark_800.svg" class="img-fluid rounded" alt="Academy Announcement" style="box-shadow: 0 0 30px rgba(0,0,0,0.5); border: 3px solid var(--accent);">
+            </div>
+        </div>
+    </div>
+</div>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
@@ -635,7 +652,7 @@
                     <img src="assets/image13.jpg" class="gallery-slide" alt="G13">
                     <img src="assets/image14.jpg" class="gallery-slide" alt="G14">
                     <img src="assets/image15.jpg" class="gallery-slide" alt="G15">
-                    
+
                 </div>
                 <button class="glassy-nav-btn btn-next" onclick="moveGallery(1)"><i class="fas fa-chevron-right"></i></button>
             </div>
@@ -733,7 +750,14 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+<script>
+    $(document).ready(function(){
+        // Shows the modal after 1.5 seconds for better user experience
+        setTimeout(function(){
+            $('#loadPopup').modal('show');
+        }, 1500);
+    });
+</script>
     <script>
         const testimonials = [
             { name: "Yamuna V", text: "I had an excellent experience at Rosnet Academy. The personal attention from the expert faculty was outstanding." },
@@ -814,6 +838,7 @@
     </script>
 </body>
 </html>
+
 
 
 
