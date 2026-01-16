@@ -46,17 +46,18 @@
 
         /* Hero Section */
         #home {
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            overflow: hidden;
-            background: #000;
-        }
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    /* Remove overflow: hidden if it's there, or ensure it's handled */
+    overflow: visible !important; 
+    background: #000;
+}
 
         .video-container {
             position: absolute;
@@ -86,7 +87,7 @@
 
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 20;
         }
 
         .hero-logo-container {
@@ -129,10 +130,6 @@
     padding: 0.8rem 2rem; /* Adjusted for better vertical centering */
 }
 
-/* Fix for the content being hidden under the navbar */
-#home {
-    padding-top: 80px; /* Gives the navbar "breathing room" from the top content */
-}
 
 .navbar-brand img {
     height: 75px; /* Slightly increased for better visibility */
@@ -952,6 +949,7 @@ counters.forEach(counter => {
     </script>
 </body>
 </html>
+
 
 
 
