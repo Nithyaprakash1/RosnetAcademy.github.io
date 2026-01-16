@@ -410,25 +410,33 @@
             color: white;
         }
 
-        /* Gallery Styles */
-        .gallery-wrapper {
-            position: relative;
-            overflow: hidden;
-            border-radius: 25px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-        }
+.gallery-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    touch-action: pan-y;
+}
 
-        .gallery-track {
+.gallery-track {
     display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: max-content; /* Critical: allows the track to be as wide as all images combined */
+    transition: transform 0.5s ease-out;
+    gap: 15px;
+    will-change: transform;
 }
 
 .gallery-slide {
-    width: 300px; /* Or whatever width you prefer */
-    flex-shrink: 0;
+    /* Adjust these for your landscape preference */
+    min-width: 350px; 
+    height: 250px;
     object-fit: cover;
-    margin-right: 15px;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .gallery-slide {
+        min-width: 85vw; /* Almost full width on mobile */
+    }
 }
 
         .glassy-nav-btn {
@@ -971,46 +979,68 @@ counters.forEach(counter => {
             else { $('.navbar').removeClass('scrolled'); }
         });
 
-        const gTrack = document.getElementById('galleryTrack');
-let currentIdx = 0;
+        const track = document.getElementById('galleryTrack');
+const slides = Array.from(track.children);
+let currentIndex = 0;
+const slideCount = slides.length;
 
-function moveGallery(dir) {
-    const slides = document.querySelectorAll('.gallery-slide');
-    const totalSlides = slides.length;
-    
-    // Calculate how many items are visible at once (usually 1 on mobile, more on desktop)
-    // For a standard slider, we move one image at a time
-    currentIdx += dir;
-
-    // Loop back to start if at the end
-    if (currentIdx >= totalSlides) {
-        currentIdx = 0;
-    }
-    // Loop to end if going back from start
-    if (currentIdx < 0) {
-        currentIdx = totalSlides - 1;
-    }
-
-    // Move the track based on the percentage of the current index
-    // Note: This assumes 1 image per view. If you want 3 per view, 
-    // change the percentage calculation.
-    const moveAmount = currentIdx * (100 / 1); // Adjust '1' to how many images show at once
-    gTrack.style.transform = `translateX(-${currentIdx * 20}%)`; 
-    // Tip: Using a smaller % like 20% or 25% allows multiple images to be visible
+// 1. Clone first few slides and append to the end for seamless loop
+const slidesToClone = 5; 
+for (let i = 0; i < slidesToClone; i++) {
+    const clone = slides[i].cloneNode(true);
+    track.appendChild(clone);
 }
 
-// Auto-slide every 5 seconds
-let autoSlide = setInterval(() => moveGallery(1), 5000);
+function moveGallery(direction) {
+    currentIndex += direction;
 
-// Reset timer when user clicks buttons so it doesn't "double jump"
-function manualMove(dir) {
-    clearInterval(autoSlide);
+    // Transition effect
+    track.style.transition = "transform 0.5s ease-out";
+    updatePosition();
+
+    // 2. The "Snap" Logic
+    // If we move past the last original image, jump back to start instantly
+    if (currentIndex >= slideCount) {
+        setTimeout(() => {
+            track.style.transition = "none";
+            currentIndex = 0;
+            updatePosition();
+        }, 500); // Match this with the CSS transition time
+    }
+
+    // If we move before the first image, jump to the end
+    if (currentIndex < 0) {
+        setTimeout(() => {
+            track.style.transition = "none";
+            currentIndex = slideCount - 1;
+            updatePosition();
+        }, 500);
+    }
+}
+
+function updatePosition() {
+    const gap = 15; // Must match the CSS gap
+    const slideWidth = slides[0].offsetWidth;
+    const moveAmount = currentIndex * (slideWidth + gap);
+    track.style.transform = `translateX(-${moveAmount}px)`;
+}
+
+// 3. Auto-loop
+let autoPlay = setInterval(() => moveGallery(1), 3000);
+
+// Reset timer on manual click
+function handleManualMove(dir) {
+    clearInterval(autoPlay);
     moveGallery(dir);
-    autoSlide = setInterval(() => moveGallery(1), 5000);
+    autoPlay = setInterval(() => moveGallery(1), 3000);
 }
+
+// Update your HTML buttons to use handleManualMove instead of moveGallery
+// Example: onclick="handleManualMove(-1)"
     </script>
 </body>
 </html>
+
 
 
 
