@@ -962,34 +962,46 @@ counters.forEach(counter => {
         });
 
         const gTrack = document.getElementById('galleryTrack');
-        let currentIdx = 0;
-        function moveGallery(dir) {
-            currentIdx = (currentIdx + dir + 3) % 3;
-            gTrack.style.transform = `translateX(-${currentIdx * 100}%)`;
-        }
-        setInterval(() => moveGallery(1), 5000);
+let currentIdx = 0;
 
-        const obs = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                document.querySelectorAll('.counter').forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
-                    let count = 0;
-                    const update = () => {
-                        count += target/100;
-                        if(count < target) {
-                            counter.innerText = Math.ceil(count) + "+";
-                            setTimeout(update, 20);
-                        } else { counter.innerText = target + "+"; }
-                    };
-                    update();
-                });
-                obs.disconnect();
-            }
-        }, { threshold: 0.5 });
-        obs.observe(document.querySelector('.stats-section'));
+function moveGallery(dir) {
+    const slides = document.querySelectorAll('.gallery-slide');
+    const totalSlides = slides.length;
+    
+    // Calculate how many items are visible at once (usually 1 on mobile, more on desktop)
+    // For a standard slider, we move one image at a time
+    currentIdx += dir;
+
+    // Loop back to start if at the end
+    if (currentIdx >= totalSlides) {
+        currentIdx = 0;
+    }
+    // Loop to end if going back from start
+    if (currentIdx < 0) {
+        currentIdx = totalSlides - 1;
+    }
+
+    // Move the track based on the percentage of the current index
+    // Note: This assumes 1 image per view. If you want 3 per view, 
+    // change the percentage calculation.
+    const moveAmount = currentIdx * (100 / 1); // Adjust '1' to how many images show at once
+    gTrack.style.transform = `translateX(-${currentIdx * 20}%)`; 
+    // Tip: Using a smaller % like 20% or 25% allows multiple images to be visible
+}
+
+// Auto-slide every 5 seconds
+let autoSlide = setInterval(() => moveGallery(1), 5000);
+
+// Reset timer when user clicks buttons so it doesn't "double jump"
+function manualMove(dir) {
+    clearInterval(autoSlide);
+    moveGallery(dir);
+    autoSlide = setInterval(() => moveGallery(1), 5000);
+}
     </script>
 </body>
 </html>
+
 
 
 
